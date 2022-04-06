@@ -6,8 +6,10 @@ read -p "Seleccione una opcion: " opcion
 if [ $opcion -eq 1 ]; then
     # Desinstala mariaDB.
     apt-get --purge remove "mariadb*"
+    ./inicio.sh
 fi
 if [ $opcion -eq 2 ]; then
     # Desinstala apache.
     apt-get --purge remove apache2
+    ./inicio.sh
 fi
