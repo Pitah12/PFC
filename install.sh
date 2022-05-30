@@ -27,6 +27,7 @@ instalar_apache="apt-get install apache2 -y"
 instalar_php="apt-get install php libapache2-mod-php php-mysql -y"
 instalar_nmap="apt-get install nmap -y"
 instalar_mysql="apt-get install mysql-server -y"
+instalar_mysql_add="mysql_secure_installation"
 
 #Comprueba que está instalado el paquete de git y 
 #lo marca con color verde si está instalado y rojo si no lo está.
@@ -53,10 +54,10 @@ fi
 #Comprueba que está instalado los paquetes de PHP y PHP-MySQL
 #y lo marca con color verde si están instalados y rojo si no lo están.
 if [ -x "$(command -v php)" ]; then
-    echo -e "\e[32mPHP instalado\e[0m"
+    echo -e "\e[32m PHP instalado \e[0m"
     instalado_php=1
 else
-    echo -e "\e[31mPHP no instalado\e[0m"
+    echo -e "\e[31m PHP no instalado \e[0m"
     instalado_php=0
 fi
 
@@ -223,6 +224,7 @@ else
         if [ $instalado_mysql -eq 0 ]; then
             echo -e "\e[32m Instalando MySQL...\e[0m"
             $instalar_mysql
+            $instalar_mysql_add
         fi
 
     #Elegir programa a instalar.

@@ -21,7 +21,7 @@ desinstalar_dhcp="apt-get --purge autoremove isc-dhcp-server -y"
 desinstalar_dns="apt-get --purge autoremove bind9 -y"
 desinstalar_git="apt-get --purge autoremove git -y"
 desinstalar_nmap="apt-get --purge autoremove nmap -y"
-desinstalar_php="apt-get autoremove --purge php libapache2-mod-php php-mysql -y"
+desinstalar_php="apt-get autoremove --purge php7* libapache2-mod-php php-mysql -y"
 borrar_php_config="rm -r /etc/php"
 
 read -p "Seleccione una opcion: " opcion
