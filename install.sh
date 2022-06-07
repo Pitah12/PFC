@@ -74,30 +74,30 @@ fi
 #Comprueba que está instalado DNS
 #y lo marca con color verde si está instalado y rojo si no lo está.
 if [ -f /etc/bind/named.conf ]; then
-    echo -e "\e[32mDNS instalado\e[0m"
+    echo -e "\e[32m DNS instalado\e[0m"
     instalado_dns=1
 else
-    echo -e "\e[31mDNS no instalado\e[0m"
+    echo -e "\e[31m DNS no instalado\e[0m"
     instalado_dns=0
 fi
 
 #Comprueba que está instalado mysql-server
 #y lo marca con color verde si está instalado y rojo si no lo está.
 if [ $(dpkg -l | grep mysql-server | wc -l) -eq 0 ]; then
-    echo -e "\e[31mMysql-server no instalado\e[0m"
+    echo -e "\e[31m Mysql-server no instalado\e[0m"
     instalado_mysql=0
 else
-    echo -e "\e[32mMysql-server instalado\e[0m"
+    echo -e "\e[32m Mysql-server instalado\e[0m"
     instalado_mysql=1
 fi
 
 #Comprueba que está instalada la herramienta Nmap
 #y lo marca con color verde si está instalado y rojo si no lo está.
 if [ $(dpkg -l | grep nmap | wc -l) -eq 0 ]; then
-    echo -e "\e[31mNmap no instalado\e[0m"
+    echo -e "\e[31m Nmap no instalado\e[0m"
     instalado_nmap=0
 else
-    echo -e "\e[32mNmap instalado\e[0m"
+    echo -e "\e[32m Nmap instalado\e[0m"
     instalado_nmap=1
 fi
 
@@ -117,8 +117,9 @@ else
     echo "No están instalados todos los paquetes/herramientas."
     read -p "Seleccione una opcion: [1] Instalar todo [2] Elegir programa a instalar [3] Seguir: " opcion
     echo -e "\e[0m"
+
+    #Instala todos los paquetes.
     if [ $opcion -eq 1 ]; then
-        #Instala todos los paquetes.
         sudo apt-get update
 
         #Git
@@ -182,7 +183,6 @@ else
         if [ $instalado_mysql -eq 0 ]; then
             echo -e "\e[32m Instalando MySQL...\e[0m"
             $instalar_mysql
-            $instalar_mysql_add
         fi
 
     #Elegir programa a instalar.
@@ -201,7 +201,6 @@ else
             if [ $instalado_mysql -eq 0 ]; then
                 echo -e "\e[32m Instalando MySQL...\e[0m"
                 $instalar_mysql
-                $instalar_mysql_add
             fi
         elif [ $opcion -eq 3 ]; then
             #Apache2

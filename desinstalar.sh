@@ -15,8 +15,8 @@ echo "8. Desinstalar todo"
 echo "9. Volver al menu"
 
 #variables:
-desinstalar_mysql="sudo apt-get --purge autoremove mysql-server mysql-client mysql-common mysql-server-core-* mysql-client-core-* -y"
-borrar_mysql_archivos="sudo rm -rf /etc/mysql /var/lib/mysql /var/log/mysql"
+desinstalar_mysql="apt-get --purge autoremove mysql-server mysql-client mysql-common mysql-server-core-* mysql-client-core-* -y"
+borrar_mysql_archivos="rm -rf /etc/mysql /var/lib/mysql /var/log/mysql"
 desinstalar_apache="apt-get --purge autoremove apache2 -y"
 desinstalar_dhcp="apt-get --purge autoremove isc-dhcp-server -y"
 desinstalar_dns="apt-get --purge autoremove bind9 -y"
