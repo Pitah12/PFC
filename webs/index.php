@@ -1,7 +1,7 @@
 <?php
 //Conecetate a la base de datos mariadb "pagina_web" en localhost con usuario "root" y contraseña "asir21"
 $servername = "localhost";
-$database = "user";
+$database = "vulne";
 $username = "root";
 $password = "pfc1";
 

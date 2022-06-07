@@ -1,3 +1,4 @@
+create database vulne;
 use vulne;
 create table user
 (

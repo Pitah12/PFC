@@ -30,21 +30,6 @@ if [ $opcion -eq 3 ]; then
     /etc/init.d/mysql restart
 fi
 
-if [ $opcion -eq 4 ]; then
-    read -p "Introduzca la contraseña de root: " contrasena
-    
-    echo -e "\e[32m Configurando MySQL...\e[0m"
-    read -p "Desea insalar la base de datos para recopilar datos? (s/n): " respuesta
-    #Si la respuesta es s, se crea un usuario y contraseña "tfg "y base de datos.
-    if [ $respuesta = "s" ]; then
-        mysql -u root -p -e "CREATE USER 'tfg'@'localhost' IDENTIFIED BY 'tfg';"
-        mysql -u root -p -e "CREATE DATABASE tfg;"
-    fi
-fi
-
-
-
-
 #Si proceso esta corriendo, lo detiene.
 else
     echo "El servidor de base de datos esta iniciado."
