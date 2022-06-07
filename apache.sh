@@ -19,7 +19,7 @@ if [ $opcion -eq 0 ]; then
     ./install.sh
 fi
 
-while [ $opcion -lt 1 ] || [ $opcion -gt 12 ]
+while [ -z $opcion ] || [ $opcion -lt 1 ] || [ $opcion -gt 12 ]
 do
     echo "Opcion incorrecta"
     read -p "Seleccione una opcion: " opcion
@@ -36,6 +36,8 @@ if [ $opcion -ge 1 ] && [ $opcion -le 12 ]; then
     #Comprobar si el archivo php está en /var/www/html/
     if [ -f /var/www/html/index.php ]; then
         echo -e "\e[32m El archivo index.php ya existe. \e[0m"
+        #Añade un salto de linea
+        echo ""
     else
         #En rojo.
         echo -e "\e[31m El archivo index.php no existe. \e[0m"
@@ -46,3 +48,4 @@ if [ $opcion -ge 1 ] && [ $opcion -le 12 ]; then
         fi
     fi
 fi
+./config.sh

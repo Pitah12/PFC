@@ -115,7 +115,7 @@ else
     #De color rojo.
     echo -e "\e[31m"
     echo "No están instalados todos los paquetes/herramientas."
-    read -p "Seleccione una opcion: [1] Instalar todo [2] Elegir programa a instalar [3] Seguir " opcion
+    read -p "Seleccione una opcion: [1] Instalar todo [2] Elegir programa a instalar [3] Seguir: " opcion
     echo -e "\e[0m"
     if [ $opcion -eq 1 ]; then
         #Instala todos los paquetes.
@@ -141,24 +141,7 @@ else
         #Configurar DHCP (option domain-name "variable")
         #Ejemplo: option domain-name "instragram.com";
         if [ $instalado_dhcp -eq 1 ]; then
-            echo -e "\e[32m Configurando DHCP...\e[0m"
-            # En magenta.
-            echo -e "\e[35m"
-            read -p "Introduzca el dominio: " dominio
-            echo -e "\e[0m"
-            sed -i 's/option domain-name ".*";/option domain-name "'$dominio'";/g' /etc/dhcp/dhcpd.conf
-        fi
-
-        #Configurar /etc/resolv.conf con la variable $dominio
-        #Ejemplo: domain-name instragram.com
-        #search instragram.com
-        #nameserver IP_Propia
-        if [ $instalado_dhcp -eq 1 ]; then
-            echo -e "\e[32m Configurando /etc/resolv.conf...\e[0m"
-            #EL DOMAIN NAME NO FUNCIONA AUN!!!!!!!!!!!!!!!!!!!!!!!!!
-            sed -i 's/domain-name .*;/domain-name '$dominio';/g' /etc/resolv.conf
-            sed -i 's/search.*/search '$dominio'/g' /etc/resolv.conf
-            #Falta poner la IP del servidor DNS en nameserver
+            ./dhcp.sh
         fi
 
         #DNS
@@ -175,6 +158,7 @@ else
         #Copia el archivo /etc/bind/db.local a /etc/bind/db.$dominio
         #Ejemplo: db.$dominio
         if [ $instalado_dns -eq 1 ]; then
+            $instalar_dns
             ./dns.sh
         fi
         #Apache2
