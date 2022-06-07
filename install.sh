@@ -186,6 +186,7 @@ else
         if [ $instalado_mysql -eq 0 ]; then
             echo -e "\e[32m Instalando MySQL...\e[0m"
             $instalar_mysql
+            echo -e "\e[32m Configurando MySQL...\e[0m"
             $instalar_mysql_conf
             $instalar_mysql_conf1
             $instalar_mysql_conf2
