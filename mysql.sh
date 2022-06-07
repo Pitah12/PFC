@@ -31,6 +31,8 @@ if [ $opcion -eq 3 ]; then
 fi
 
 if [ $opcion -eq 4 ]; then
+    read -p "Introduzca la contraseña de root: " contrasena
+    
     echo -e "\e[32m Configurando MySQL...\e[0m"
     read -p "Desea insalar la base de datos para recopilar datos? (s/n): " respuesta
     #Si la respuesta es s, se crea un usuario y contraseña "tfg "y base de datos.
