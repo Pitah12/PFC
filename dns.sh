@@ -63,4 +63,3 @@ fi
 #Reinicia el servicio de DNS.
 echo -e "\e[32m Reiniciando servicio DNS...\e[0m"
 service bind9 restart
-./config.sh
