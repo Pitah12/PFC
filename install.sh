@@ -34,20 +34,20 @@ instalar_mysql_add="mysql_secure_installation"
 echo -e "\e[0m"
 #Comprueba que está instalado git.
 if [ -x "$(command -v git)" ]; then
-    echo -e "\e[32mGit instalado\e[0m"
+    echo -e "\e[32m Git instalado \e[0m"
     instalado_git=1
 else
-    echo -e "\e[31mGit no instalado\e[0m"
+    echo -e "\e[31m Git no instalado \e[0m"
     instalado_git=0
 fi
 
 #Comprueba que está instalado Apache2 
 #y lo marca con color verde si está instalado y rojo si no lo está.
 if [ -f /etc/apache2/apache2.conf ]; then
-    echo -e "\e[32mApache2 instalado\e[0m"
+    echo -e "\e[32m Apache2 instalado \e[0m"
     instalado_apache=1
 else
-    echo -e "\e[31mApache2 no instalado\e[0m"
+    echo -e "\e[31m Apache2 no instalado \e[0m"
     instalado_apache=0
 fi
 
@@ -64,10 +64,10 @@ fi
 #Comprueba que está instalado DHCP
 #y lo marca con color verde si está instalado y rojo si no lo está.
 if [ -f /etc/dhcp/dhcpd.conf ]; then
-    echo -e "\e[32mDHCP instalado\e[0m"
+    echo -e "\e[32m DHCP instalado \e[0m"
     instalado_dhcp=1
 else
-    echo -e "\e[31mDHCP no instalado\e[0m"
+    echo -e "\e[31m DHCP no instalado \e[0m"
     instalado_dhcp=0
 fi
 
@@ -241,8 +241,9 @@ else
         elif [ $opcion -eq 2 ]; then
             #MySQL
             if [ $instalado_mysql -eq 0 ]; then
-                echo "Instalando MySQL..."
-                apt-get install mysql-server -y
+                echo -e "\e[32m Instalando MySQL...\e[0m"
+                $instalar_mysql
+                $instalar_mysql_add
             fi
         elif [ $opcion -eq 3 ]; then
             #Apache2
