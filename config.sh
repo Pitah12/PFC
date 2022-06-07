@@ -2,7 +2,7 @@
 clear
 echo "1. Elegir página web"
 echo "2. Iniciar/Parar servidor DHCP. (Atacante)"
-echo "3. Iniciar/Parar servidor DNS. (Atacante)"
+echo "3. Configurar servidor DNS. (Atacante)"
 echo "4. Iniciar/Parar servidor web. (Apache)"
 echo "5. Analisis de red."
 echo "6. Desintalar uno o varios paquetes."
