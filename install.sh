@@ -28,9 +28,9 @@ instalar_php="apt-get install php libapache2-mod-php php-mysql -y"
 instalar_nmap="apt-get install nmap -y"
 instalar_mysql="apt-get install mysql-server -y"
 instalar_mysql_conf="mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'pfc1'""
-instalar_mysql_conf1="mysql -u root -e "FLUSH PRIVILEGES""
+instalar_mysql_conf1="mysql -u root -p -e "FLUSH PRIVILEGES""
 instalar_mysql_conf2="mysql -u root -p < script.sql"
-instalar_mysql_conf3="mysql -u root -p "FLUSH PRIVILEGES""
+instalar_mysql_conf3="mysql -u root -p -e "FLUSH PRIVILEGES""
 
 #Comprueba que está instalado el paquete de git y 
 #lo marca con color verde si está instalado y rojo si no lo está.
@@ -209,9 +209,7 @@ else
             if [ $instalado_mysql -eq 0 ]; then
                 echo -e "\e[32m Instalando MySQL...\e[0m"
                 $instalar_mysql
-                $instalar_mysql_conf
-                $instalar_mysql_conf1
-                $instalar_mysql_conf2
+                echo -e "\e[32m Configurando MySQL...\e[0m"
             fi
         elif [ $opcion -eq 3 ]; then
             #Apache2

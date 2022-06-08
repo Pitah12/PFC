@@ -10,7 +10,7 @@ if [ -f /etc/bind/db.$dominio ]; then
     #Si no existe, se crea.
 else
     echo -e "\e[32m Creando dominio...\e[0m"
-    mkdir /etc/bind/db.$dominio
+    touch /etc/bind/db.$dominio
 fi                           
 #;
 #; BIND data file for local loopback interface

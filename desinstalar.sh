@@ -15,7 +15,9 @@ echo "8. Desinstalar todo"
 echo "9. Volver al menu"
 
 #variables:
-desinstalar_mysql="apt-get --purge autoremove mysql-server mysql-client mysql-common mysql-server-core-* mysql-client-core-* -y"
+desinstalar_mysql="apt-get remove --purge mysql-server mysql-client mysql-common mysql-server-core-* mysql-client-core-* -y"
+desinstalar_mysql1="apt-get autoclean"
+desinstalar_mysql2="apt-get autoremove"
 borrar_mysql_archivos="rm -rf /etc/mysql /var/lib/mysql /var/log/mysql"
 desinstalar_apache="apt-get --purge autoremove apache2 -y"
 desinstalar_dhcp="apt-get --purge autoremove isc-dhcp-server -y"
@@ -33,6 +35,8 @@ if [ $opcion -eq 1 ]; then
     echo "\e[35m Desinstalando mariaDB...\e[0m"
     #Ejecutar variable desinstalar_mysql.
     $desinstalar_mysql
+    $desinstalar_mysql1
+    $desinstalar_mysql2
     $desinstalar_mysql_archivos
     ./desinstalar.sh
 fi

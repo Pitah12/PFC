@@ -5,8 +5,9 @@ echo "[7]. LinkedIn    [8]. Dropbox       [9]. Ebay"
 echo "[10]. GitHub     [11]. Microsoft      [12]. Gmail"
 echo "[0]. Salir"
 #Magenta
-echo -e "\e[35m Selecione una opcion: \e[0m"
-read opcion
+echo -e "\e[35m"
+read -p "Seleccione una opcion: " opcion
+echo -e "\e[0m"
 
 #Guarda las palabras en un array
 
