@@ -1,8 +1,8 @@
 #!/bin/bash
-echo "[1]. Instagram    [2]. Facebook    [3]. LinkedIn"
-echo "[4]. Discord      [5]. Netflix   [6]. Yahoo"
-echo "[7]. LinkedIn    [8]. Dropbox       [9]. Ebay"
-echo "[10]. GitHub     [11]. Microsoft      [12]. Gmail"
+echo "[1]. Instagram    [2]. Facebook(?) [3]. LinkedIn"
+echo "[4]. Discord      [5]. Netflix     [6]. Yahoo"
+echo "[7]. ?            [8]. Dropbox     [9]. Ebay"
+echo "[10]. GitHub      [11]. Microsoft  [12]. Gmail"
 echo "[0]. Salir"
 #Magenta
 echo -e "\e[35m"
