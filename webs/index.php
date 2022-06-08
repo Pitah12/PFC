@@ -23,19 +23,16 @@ mysqli_query($conn, $sql);
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Conexion a la base de datos</title> 
+    <title>¡Bienvenido!</title> 
 </head>
 <body>
 <?php
 if ($conn) {
-    echo "Conexion realizada correctamente";
+    //Redirecciona a la pagina de inicio
+    header("Location: login.html");
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
-
-// Muestra el usuario y contraseña introducidos en index.html
-echo "<br>Usuario: " . $_POST["username"];
-echo "<br>Contraseña: " . $_POST["passwd"];
 
 ?>
 </body>
