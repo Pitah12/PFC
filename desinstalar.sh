@@ -28,11 +28,11 @@ desinstalar_php="apt-get autoremove --purge php7* libapache2-mod-php php-mysql -
 borrar_php_config="rm -r /etc/php"
 
 read -p "Seleccione una opcion: " opcion
-# Si el numero es 1, se desinstala mariaDB.
+# Si el numero es 1, se desinstala MySQL.
 if [ $opcion -eq 1 ]; then
-    # Desinstala mariaDB.
+    # Desinstala MySQL.
     #Color magenta.
-    echo "\e[35m Desinstalando mariaDB...\e[0m"
+    echo "\e[35m Desinstalando MySQL...\e[0m"
     #Ejecutar variable desinstalar_mysql.
     $desinstalar_mysql
     $desinstalar_mysql1
@@ -111,12 +111,14 @@ if [ $opcion -eq 8 ]; then
     read -p "Esta seguro de desinstalar todo? (s/n): " respuesta
     echo -e "\e[0m"
     if [ $respuesta = "s" ]; then
-        # Desinstala mariaDB.
+        # Desinstala MySQL.
         #Color magenta.
-        echo -e "\e[35m Desinstalando mariaDB...\e[0m"
+        echo -e "\e[35m Desinstalando MySQL...\e[0m"
         #Ejecutar variable desinstalar_mysql.
         $desinstalar_mysql
-        $borrar_mysql_archivos
+        $desinstalar_mysql1
+        $desinstalar_mysql2
+        $desinstalar_mysql_archivos
         # Desinstala apache.
         #Color magenta.
         echo -e "\e[35m Desinstalando apache...\e[0m"
