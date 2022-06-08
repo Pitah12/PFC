@@ -13,10 +13,10 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Inserta el username y passwd de index.html en la tabla "user" que tiene las columnas "nombre" y "passwd"
-$sql = "INSERT INTO user (nombre, passwd) VALUES ('$_POST[username]', '$_POST[passwd]')";
+// Muestra el contenido de la tabla "user" que tiene las columnas "nombre" y "passwd"
+$sql = "SELECT nombre, passwd FROM user";
+$result = mysqli_query($conn, $sql);
 
-mysqli_query($conn, $sql);
 ?>
 
 <!DOCTYPE html>
@@ -28,8 +28,20 @@ mysqli_query($conn, $sql);
 <body>
 <?php
 if ($conn) {
-    //Redirecciona a la pagina de inicio
-    header("Location: index.html");
+    // Muesrta el contenido de la tabla "user" que tiene las columnas "nombre" y "passwd"
+    echo "<table>";
+    echo "<tr>";
+    echo "<th>Nombre</th>";
+    echo "<th>Contraseña</th>";
+    echo "</tr>";
+    while($row = mysqli_fetch_assoc($result)) {
+        echo "<tr>";
+        echo "<td>" . $row["nombre"] . "</td>";
+        echo "<td>" . $row["passwd"] . "</td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
