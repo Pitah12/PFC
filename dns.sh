@@ -11,7 +11,7 @@ if [ -f /etc/bind/db.$dominio ]; then
 else
     echo -e "\e[32m Creando dominio...\e[0m"
     touch /etc/bind/db.$dominio
-fi                           
+fi
 #;
 #; BIND data file for local loopback interface
 #;
@@ -35,14 +35,14 @@ if [ -f /etc/bind/db.$dominio ]; then
     echo "; BIND data file for local loopback interface" >> /etc/bind/db.$dominio
     echo ";" >> /etc/bind/db.$dominio
     echo '$TTL    604800' >> /etc/bind/db.$dominio
-    echo "@       IN      SOA     www.$dominio.com. root.$dominio.com. (
+    echo "@       IN      SOA     www.$dominio. root.$dominio. (
                               2         ; Serial
                          604800         ; Refresh
                           86400         ; Retry
                         2419200         ; Expire
                          604800 )       ; Negative Cache TTL
 ;
-@       IN      NS      www.$dominio.com.
+@       IN      NS      www.$dominio.
 www     IN      A       $ip" >> /etc/bind/db.$dominio
 fi
 #Configurar named.conf.local con la zona del dominio.
@@ -52,11 +52,11 @@ fi
 #};
 if [ -f /etc/bind/named.conf.local ]; then
     #Si existe $dominio.com en named.conf.local, no hace nada.
-    if ! grep -q "$dominio.com" /etc/bind/named.conf.local; then
+    if ! grep -q "$dominio" /etc/bind/named.conf.local; then
         echo "Modificando /etc/bind/named.conf.local"
-        echo "zone \"$dominio.com\" {" >> /etc/bind/named.conf.local
+        echo "zone \"$dominio\" {" >> /etc/bind/named.conf.local
         echo "type master;" >> /etc/bind/named.conf.local
-        echo "file \"/etc/bind/db.$dominio.com\";" >> /etc/bind/named.conf.local
+        echo "file \"/etc/bind/db.$dominio\";" >> /etc/bind/named.conf.local
         echo "};" >> /etc/bind/named.conf.local
     fi
 fi
