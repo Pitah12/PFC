@@ -11,10 +11,10 @@ read -p "Seleccione una opcion: " opcion
 echo ""
 #---------------------------------------------------------------------------------------------------------------------
 
-instalar_mysql_conf="mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'pfc1'""
-instalar_mysql_conf1="mysql -u root -p pfc1 -e "FLUSH PRIVILEGES""
+instalar_mysql_conf="mysql -u root -e \"ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'pfc1'\""
+instalar_mysql_conf1="mysql -u root -p pfc1 -e \"FLUSH PRIVILEGES\""
 instalar_mysql_conf2="mysql -u root < script.sql"
-instalar_mysql_conf3="mysql -u root -e "FLUSH PRIVILEGES""
+instalar_mysql_conf3="mysql -u root -e \"FLUSH PRIVILEGES\""
 
 #variable página_web
 #Mientras no esté entre el 1 y el 7 se repite el bucle.
@@ -41,8 +41,6 @@ fi
 if [ $opcion -eq 4 ]; then
     $instalar_mysql_conf2
     $instalar_mysql_conf3
-    $instalar_mysql_conf
-    $instalar_mysql_conf1
 fi
 
 # Si el numero es 5, se inicia el analisis de red.
