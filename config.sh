@@ -13,7 +13,6 @@ echo ""
 
 instalar_mysql_conf="mysql -u root -e \"ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'pfc1'\""
 instalar_mysql_conf1="mysql -u root -p pfc1 -e \"FLUSH PRIVILEGES\""
-instalar_mysql_conf2="mysql -u root < script.sql"
 instalar_mysql_conf3="mysql -u root -e \"FLUSH PRIVILEGES\""
 
 #variable página_web
@@ -39,8 +38,17 @@ fi
 
 # Si el numero es 4, se configura mysql.
 if [ $opcion -eq 4 ]; then
-    $instalar_mysql_conf2
-    $instalar_mysql_conf3
+    # Color magenta.
+    echo -e "\e[35m Configurando MySQL...\e[0m"
+    mysql -u root < script.sql
+    #Crear usuario y contraseña.
+    mysql -u root -e "CREATE USER 'hacker'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'phising'"
+    mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'hacker'@'localhost' WITH GRANT OPTION"
+    mysql -u root -e "FLUSH PRIVILEGES"
+    #Crear contraseña para root.
+    mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'pfc1'"
+    echo -e "\e[35m Contraseña del usuario hacker: phising\e[0m"
+    echo -e "\e[35m Contraseña del usuario root: pfc1\e[0m"
 fi
 
 # Si el numero es 5, se inicia el analisis de red.

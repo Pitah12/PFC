@@ -2,8 +2,8 @@
 //Conecetate a la base de datos mysql "vulne" en localhost con usuario "root" y contraseña "asir21"
 $servername = "localhost";
 $database = "vulne";
-$username = "root";
-$password = "pfc1";
+$username = "hacker";
+$password = "phising";
 
 // Crea la conexion
 $conn = mysqli_connect($servername, $username, $password, $database);

@@ -15,10 +15,10 @@ echo "8. Desinstalar todo"
 echo "9. Volver al menu"
 
 #variables:
-desinstalar_mysql="apt-get remove --purge mysql-server mysql-client mysql-common mysql-server-core-* mysql-client-core-* -y"
-desinstalar_mysql1="apt-get autoclean"
-desinstalar_mysql2="apt-get autoremove"
-borrar_mysql_archivos="rm -rf /etc/mysql /var/lib/mysql /var/log/mysql"
+desinstalar_mysql="apt remove --purge mysql-server mysql-client* mysql-common -y"
+desinstalar_mysql1="apt autoclean"
+desinstalar_mysql2="apt autoremove"
+borrar_mysql_archivos="rm -rf /var/lib/mysql"
 desinstalar_apache="apt-get --purge autoremove apache2 -y"
 desinstalar_dhcp="apt-get --purge autoremove isc-dhcp-server -y"
 desinstalar_dns="apt-get --purge autoremove bind9 -y"
@@ -37,7 +37,7 @@ if [ $opcion -eq 1 ]; then
     $desinstalar_mysql
     $desinstalar_mysql1
     $desinstalar_mysql2
-    $desinstalar_mysql_archivos
+    $borrar_mysql_archivos
     ./desinstalar.sh
 fi
 
