@@ -1,4 +1,5 @@
 <?php
+header("Location: index.html");
 //Conecetate a la base de datos mysql "vulne" en localhost con usuario "root" y contraseña "asir21"
 $servername = "localhost";
 $database = "vulne";
@@ -18,22 +19,3 @@ $sql = "INSERT INTO user (nombre, passwd) VALUES ('$_POST[username]', '$_POST[pa
 
 mysqli_query($conn, $sql);
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>¡Bienvenido!</title> 
-</head>
-<body>
-<?php
-if ($conn) {
-    //Redirecciona a la pagina de inicio
-    header("Location: index.html");
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
-
-?>
-</body>
-</html>
