@@ -4,8 +4,9 @@ echo "2. Configurar servidor DHCP. (Atacante)"
 echo "3. Configurar servidor DNS. (Atacante)"
 echo "4. Configurar MySQL (Necesario)"
 echo "5. Analisis de red."
-echo "6. Desintalar uno o varios paquetes."
-echo "7. Salir."
+echo "6. Ataque ARP"
+echo "7. Desintalar uno o varios paquetes."
+echo "8. Salir."
 echo ""
 read -p "Seleccione una opcion: " opcion
 echo ""
@@ -56,12 +57,16 @@ if [ $opcion -eq 5 ]; then
     ./analisis.sh
 fi
 
-# Si el numero es 6, se desinstala uno o varios paquetes.
 if [ $opcion -eq 6 ]; then
+    ./arp.sh
+fi
+
+# Si el numero es 7, se desinstala uno o varios paquetes.
+if [ $opcion -eq 7 ]; then
     ./desinstalar.sh
 fi
 
-if [ $opcion -eq 7 ]; then
+if [ $opcion -eq 8 ]; then
     echo "Hasta pronto!"
     exit 0
 fi

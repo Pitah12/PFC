@@ -6,7 +6,7 @@ echo "3. DHCP"
 echo "4. DNS"
 
 # Herramientas:
-echo "5. Git"
+echo "5. Arpspoof"
 echo "6. Nmap"
 echo "7. PHP"
 echo "8. Desinstalar todo"
@@ -22,9 +22,9 @@ borrar_mysql_archivos="rm -rf /var/lib/mysql"
 desinstalar_apache="apt-get --purge autoremove apache2 -y"
 desinstalar_dhcp="apt-get --purge autoremove isc-dhcp-server -y"
 desinstalar_dns="apt-get --purge autoremove bind9 -y"
-desinstalar_git="apt-get --purge autoremove git -y"
+desinstalar_arpspoof="apt-get --purge autoremove arpspoof -y"
 desinstalar_nmap="apt-get --purge autoremove nmap -y"
-desinstalar_php="apt-get autoremove --purge php7* libapache2-mod-php php-mysql -y"
+desinstalar_php="apt-get autoremove --purge php libapache2-mod-php php-mysql -y"
 borrar_php_config="rm -r /etc/php /usr/bin/php"
 
 read -p "Seleccione una opcion: " opcion
@@ -70,13 +70,13 @@ if [ $opcion -eq 4 ]; then
     ./desinstalar.sh
 fi
 
-#Si el numero es 5, se desinstala Git.
+#Si el numero es 5, se desinstala arpspoof.
 if [ $opcion -eq 5 ]; then
-    # Desinstala Git.
+    # Desinstala arpspoof.
     #Color magenta.
-    echo "\e[35m Desinstalando Git...\e[0m"
-    #Ejecutar variable desinstalar_git.
-    $desinstalar_git
+    echo "\e[35m Desinstalando arpspoof...\e[0m"
+    #Ejecutar variable desinstalar_arpspoof.
+    $desinstalar_arpspoof
     ./desinstalar.sh
 fi
 
@@ -134,11 +134,11 @@ if [ $opcion -eq 8 ]; then
         echo -e "\e[35m Desinstalando DNS...\e[0m"
         #Ejecutar variable desinstalar_dns.
         $desinstalar_dns
-        # Desinstala Git.
+        # Desinstala arpspoof.
         #Color magenta.
-        echo -e "\e[35m Desinstalando Git...\e[0m"
-        #Ejecutar variable desinstalar_git.
-        $desinstalar_git
+        echo -e "\e[35m Desinstalando arpspoof...\e[0m"
+        #Ejecutar variable desinstalar_arpspoof.
+        $desinstalar_arpspoof
         # Desinstala Nmap.
         #Color magenta.
         echo -e "\e[35m Desinstalando Nmap...\e[0m"

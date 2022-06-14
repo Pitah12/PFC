@@ -11,7 +11,7 @@ echo "
  #######   #####     #####   #####
 "
 #Variables para guardar si los programas están instalados o no.
-instalado_git=0
+instalado_arpspoof=0
 instalado_dhcp=0
 instalado_mysql=0
 instalado_apache=0
@@ -20,7 +20,7 @@ instalado_dns=0
 instalado_nmap=0
 
 #Variables con la instalación de los programas.
-instalar_git="apt-get install git -y"
+instalar_arpspoof="apt-get install arpspoof -y"
 instalar_dhcp="apt-get install isc-dhcp-server -y"
 instalar_dns="apt-get install bind9 -y"
 instalar_apache="apt-get install apache2 -y"
@@ -28,16 +28,16 @@ instalar_php="apt-get install php libapache2-mod-php php-mysql -y"
 instalar_nmap="apt-get install nmap -y"
 instalar_mysql="apt-get install mysql-server -y"
 
-#Comprueba que está instalado el paquete de git y 
+#Comprueba que está instalado el paquete de arpspoof y 
 #lo marca con color verde si está instalado y rojo si no lo está.
 echo -e "\e[0m"
-#Comprueba que está instalado git.
-if [ -x "$(command -v git)" ]; then
-    echo -e "\e[32m Git instalado \e[0m"
-    instalado_git=1
+#Comprueba que está instalado arpspoof.
+if [ $(dpkg-query -W -f='${Status}' arpspoof 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
+    echo -e "\e[32m arpspoof instalado \e[0m"
+    instalado_arpspoof=1
 else
-    echo -e "\e[31m Git no instalado \e[0m"
-    instalado_git=0
+    echo -e "\e[31m arpspoof no instalado \e[0m"
+    instalado_arpspoof=0
 fi
 
 #Comprueba que está instalado Apache2 
@@ -101,7 +101,7 @@ else
 fi
 
 #Pregunta por la opción que el usuario quiere ejecutar.
-suma_instalados=$(($instalado_git + $instalado_mysql + $instalado_apache + $instalado_php + $instalado_dhcp + $instalado_dns + $instalado_nmap))
+suma_instalados=$(($instalado_arpspoof + $instalado_mysql + $instalado_apache + $instalado_php + $instalado_dhcp + $instalado_dns + $instalado_nmap))
 echo "****************************************************************************"
 if [ $suma_instalados -eq 7 ]; then
     echo -e "\e[32m Todos los paquetes están instalados \e[0m"
@@ -121,11 +121,11 @@ else
     if [ $opcion -eq 1 ]; then
         sudo apt-get update
 
-        #Git
-        if [ $instalado_git -eq 0 ]; then
+        #arpspoof
+        if [ $instalado_arpspoof -eq 0 ]; then
             #Color verde.
-            echo -e "\e[32m Instalando Git...\e[0m"
-            $instalar_git
+            echo -e "\e[32m Instalando arpspoof...\e[0m"
+            $instalar_arpspoof
         fi
 
         #DHCP
@@ -186,14 +186,14 @@ else
 
     #Elegir programa a instalar.
     elif [ $opcion -eq 2 ]; then
-        echo "Seleccione una opcion: [1] Git [2] MySQL [3] Apache2 [4] PHP [5] DHCP [6] DNS [7] Nmap"
+        echo "Seleccione una opcion: [1] arpspoof [2] MySQL [3] Apache2 [4] PHP [5] DHCP [6] DNS [7] Nmap"
         read -p "Opcion: " opcion
         if [ $opcion -eq 1 ]; then
-            #Git
-            if [ $instalado_git -eq 0 ]; then
+            #arpspoof
+            if [ $instalado_arpspoof -eq 0 ]; then
                 #Color verde.
-                echo -e "\e[32m Instalando Git...\e[0m"
-                $instalar_git
+                echo -e "\e[32m Instalando arpspoof...\e[0m"
+                $instalar_arpspoof
             fi
         elif [ $opcion -eq 2 ]; then
             #MySQL

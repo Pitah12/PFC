@@ -47,7 +47,7 @@ if [ $opcion -ge 1 ] && [ $opcion -le 12 ]; then
         echo -e "\e[32m Copiando archivo users.php a /var/www/html/ \e[0m"
         cp webs/users.php /var/www/html/
         if [ -d /var/www/html/index.php ]; then
-            echo -e "\e[31m Copiado $"
+            echo -e "\e[31m Copiado index.php a /var/www/html/ \e[0m"
         fi
     fi
 fi
