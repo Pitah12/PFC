@@ -5,6 +5,29 @@ echo -e "\e[35m"
 read -p "Introduzca el dominio: " dominio
 echo -e "\e[0m"
 sed -i 's/option domain-name ".*";/option domain-name "'$dominio'";/g' /etc/dhcp/dhcpd.conf
+read -p "Introduzca la IP que quieras de la maquina: " ip
+
+#option domain-name "instagram.com";
+#option domain-name-servers $ip;
+
+#default-lease-time 86400;
+sed -i 's/default-lease-time.*;/default-lease-time 86400;/g' /etc/dhcp/dhcpd.conf
+#max-lease-time 7200;
+sed -i 's/max-lease-time.*;/max-lease-time 7200;/g' /etc/dhcp/dhcpd.conf
+#min-lease-time 3600;
+#Añade el min-lease-time
+echo "min-lease-time 3600;" >> /etc/dhcp/dhcpd.conf
+#option subnet-mask 255.255.255.0;
+echo "option subnet-mask 255.255.255.0;" >> /etc/dhcp/dhcpd.conf
+#option routers 10.21.133.1;
+echo "option routers $ip;" >> /etc/dhcp/dhcpd.conf
+#subnet 10.21.133.0 netmask 255.255.255.0 {
+echo "subnet $ip 255.255.255.0 {" >> /etc/dhcp/dhcpd.conf
+#range 10.21.133.20 10.21.133.30;
+echo "range $ip.20 $ip.30;" >> /etc/dhcp/dhcpd.conf
+#}
+
+
 
 #Configurar /etc/resolv.conf con la variable $dominio
 #Ejemplo: domain $dominio.com.
