@@ -5,7 +5,16 @@ echo -e "\e[35m"
 read -p "Introduzca el dominio: " dominio
 echo -e "\e[0m"
 sed -i 's/option domain-name ".*";/option domain-name "'$dominio'";/g' /etc/dhcp/dhcpd.conf
+echo -e "\e[35m"
 read -p "Introduzca la IP que quieras de la maquina: " ip
+echo -e "\e[0m"
+
+#Quitar a la IP los últimos numeros
+#Ejemplo de entrada:
+#10.21.131.1
+#Salida:
+#10.21.131.
+ip_short=${ip%.*}
 
 #option domain-name "instagram.com";
 #option domain-name-servers $ip;
@@ -20,29 +29,66 @@ echo "min-lease-time 3600;" >> /etc/dhcp/dhcpd.conf
 #option subnet-mask 255.255.255.0;
 echo "option subnet-mask 255.255.255.0;" >> /etc/dhcp/dhcpd.conf
 #option routers 10.21.133.1;
-echo "option routers $ip;" >> /etc/dhcp/dhcpd.conf
+echo "option routers $ip_short.1;" >> /etc/dhcp/dhcpd.conf
 #subnet 10.21.133.0 netmask 255.255.255.0 {
-echo "subnet $ip 255.255.255.0 {" >> /etc/dhcp/dhcpd.conf
+echo "subnet $ip_short.0 255.255.255.0 {" >> /etc/dhcp/dhcpd.conf
 #range 10.21.133.20 10.21.133.30;
-echo "range $ip.20 $ip.30;" >> /etc/dhcp/dhcpd.conf
+echo "range $ip_short.20 $ip_short.30;" >> /etc/dhcp/dhcpd.conf
 #}
 
+#Configurar las interfaces de red en /etc/network/interfaces
+echo -e "\e[35m Se necesitan 2 interfaces de red para el DHCP.\e[0m"
+echo -e "\e[35m"
+read -p "Introduzca la interfaz de red que quiera usar para el servidor DHCP: " interfaz
+read -p "Introduzca la interfaz de red que quiera usar para el cliente DHCP: " interfaz2
+echo -e "\e[0m"
+#Configurar la interfaz de red
+#Comprobar si $interfaz es una interfaz de red
+if ! ifconfig | grep -q $interfaz; then
+    echo -e "\e[31m La interfaz de red introducida no es válida.\e[0m"
+    exit 1
+    if ! ifconfig | grep -q $interfaz2; then
+        echo -e "\e[31m La interfaz de red introducida no es válida.\e[0m"
+        exit 1
+    else
+        echo -e "\e[32m Configurando interfaces de red...\e[0m"
+        else
+        #Haz una copia de la interfaz de red
+        cp /etc/network/interfaces /etc/network/interfaces.bak
+        #Deshabilita las interfaces de red
+        ifdown $interfaz $interfaz2
+        #Borra el contenido de la carpeta interfaces
+        rm -rf /etc/network/interfaces
+        #Crea una nueva carpeta interfaces
+        touch /etc/network/interfaces
+        #Añade el contenido de la interfaz de red
+        echo "source /etc/network/interfaces.d/*" >> /etc/network/interfaces
+        echo "auto lo
+        iface lo inet loopback" >> /etc/network/interfaces
+        echo "allow-hotplug $interfaz
+        iface $interfaz inet static
+            address $ip
+            netmask 255.255.255.0" >> /etc/network/interfaces
+        echo "allow-hotplug $interfaz2
+        iface $interfaz2 inet dhcp" >> /etc/network/interfaces
+        #Habilita las interfaces de red
+        ifup $interfaz $interfaz2
+        fi
+    fi
+fi
 
 
 #Configurar /etc/resolv.conf con la variable $dominio
 #Ejemplo: domain $dominio.com.
 #search $dominio.com.
-#nameserver IP_Propia
+#nameserver ip
 #Si domain no existe en resolv, lo pone con el dominio.
 #Si search no existe en resolv, lo pone con el dominio.
 #Si nameserver no existe en resolv, lo pone con la IP propia.
 
 if [ -f /etc/resolv.conf ]; then
     echo -e "\e[32m Configurando resolv.conf...\e[0m"
-    echo -e "\e[35m"
-    read -p "Introduzca la IP de la máquina: " IP_Propia
-    echo -e "\e[0m"
-    sed -i 's/nameserver .*;/nameserver '$IP_Propia';/g' /etc/resolv.conf
+    sed -i 's/nameserver .*;/nameserver '$ip';/g' /etc/resolv.conf
     sed -i 's/domain .*;/domain '$dominio';/g' /etc/resolv.conf
     sed -i 's/search .*;/search '$dominio';/g' /etc/resolv.conf
 
@@ -52,8 +98,8 @@ if [ -f /etc/resolv.conf ]; then
     if ! grep -q "search $dominio" /etc/resolv.conf; then
         echo "search $dominio" >> /etc/resolv.conf
     fi
-    if ! grep -q "nameserver $IP_Propia" /etc/resolv.conf; then
-        echo "nameserver $IP_Propia" >> /etc/resolv.conf
+    if ! grep -q "nameserver $ip" /etc/resolv.conf; then
+        echo "nameserver $ip" >> /etc/resolv.conf
     fi
 fi
 
