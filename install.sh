@@ -134,6 +134,12 @@ else
     read -p "Seleccione una opcion: [1] Instalar todo [2] Elegir programa a instalar [3] Seguir: " opcion
     echo -e "\e[0m"
 
+    #Si el input está vacio, vuelve a preguntar.
+    while [ -z "$opcion" ] || [ $opcion -gt 3 ] || [ $opcion -lt 1 ]; do
+        echo -e "\e[31m"
+        read -p "Seleccione una opcion: [1] Instalar todo [2] Elegir programa a instalar [3] Seguir: " opcion
+        echo -e "\e[0m"
+    done
     #Instala todos los paquetes.
     if [ $opcion -eq 1 ]; then
         sudo apt-get update

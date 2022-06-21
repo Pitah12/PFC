@@ -52,7 +52,6 @@ if ! ifconfig | grep -q $interfaz; then
         exit 1
     else
         echo -e "\e[32m Configurando interfaces de red...\e[0m"
-        else
         #Haz una copia de la interfaz de red
         cp /etc/network/interfaces /etc/network/interfaces.bak
         #Deshabilita las interfaces de red
@@ -73,10 +72,9 @@ if ! ifconfig | grep -q $interfaz; then
         iface $interfaz2 inet dhcp" >> /etc/network/interfaces
         #Habilita las interfaces de red
         ifup $interfaz $interfaz2
-        fi
+        echo -e "\e[32m Interfaces de red configuradas.\e[0m"
     fi
 fi
-
 
 #Configurar /etc/resolv.conf con la variable $dominio
 #Ejemplo: domain $dominio.com.
@@ -106,9 +104,6 @@ fi
 # Configura la interfaz de red en /etc/default/isc-dhcp-server
 # INTERFACESv4="" a INTERFACESv4="$interfaz"
 echo -e "\e[32m Configurando /etc/default/isc-dhcp-server...\e[0m"
-echo -e "\e[35m"
-read -p "Introduzca la interfaz de red: " interfaz
-echo -e "\e[0m"
 sed -i 's/INTERFACESv4=""/INTERFACESv4="'$interfaz'"/g' /etc/default/isc-dhcp-server
 
 #Reinicia el servicio DHCP.
