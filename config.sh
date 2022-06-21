@@ -47,7 +47,7 @@ if [ $opcion -eq 4 ]; then
     mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'hacker'@'localhost' WITH GRANT OPTION"
     mysql -u root -e "FLUSH PRIVILEGES"
     #Crear contraseña para root.
-    mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'pfc1'"
+    mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'pfc1'"
     echo -e "\e[35m Contraseña del usuario hacker: phising\e[0m"
     echo -e "\e[35m Contraseña del usuario root: pfc1\e[0m"
 fi
