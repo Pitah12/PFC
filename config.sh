@@ -43,7 +43,7 @@ if [ $opcion -eq 4 ]; then
     echo -e "\e[35m Configurando MySQL...\e[0m"
     mysql -u root < script.sql
     #Crear usuario y contraseña.
-    mysql -u root -e "CREATE USER 'hacker'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'phising'"
+    mysql -u root -e "CREATE USER 'hacker'@'localhost' IDENTIFIED BY 'phising'"
     mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'hacker'@'localhost' WITH GRANT OPTION"
     mysql -u root -e "FLUSH PRIVILEGES"
     #Crear contraseña para root.
